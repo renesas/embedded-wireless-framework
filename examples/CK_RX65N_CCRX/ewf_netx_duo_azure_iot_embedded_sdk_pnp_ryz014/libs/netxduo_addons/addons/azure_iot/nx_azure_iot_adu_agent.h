@@ -38,7 +38,7 @@ extern   "C" {
 /* Define the proxy update count. The value is 0 by default, it means only supporting host-level update.
    To enable proxy update for leaf-level update, redefine NX_AZURE_IOT_ADU_AGENT_PROXY_UPDATE_COUNT.  */
 #ifndef NX_AZURE_IOT_ADU_AGENT_PROXY_UPDATE_COUNT
-#define NX_AZURE_IOT_ADU_AGENT_PROXY_UPDATE_COUNT                       0
+#define NX_AZURE_IOT_ADU_AGENT_PROXY_UPDATE_COUNT                       1
 #endif /* NX_AZURE_IOT_ADU_AGENT_PROXY_UPDATE_COUNT */
 
 /* Define the ADU agent component name.  */
@@ -221,7 +221,8 @@ extern   "C" {
 
 /* Define the window size of HTTP for downloading firmware.  */
 #ifndef NX_AZURE_IOT_ADU_AGENT_HTTP_WINDOW_SIZE
-#define NX_AZURE_IOT_ADU_AGENT_HTTP_WINDOW_SIZE                         (16 * 1024)
+//#define NX_AZURE_IOT_ADU_AGENT_HTTP_WINDOW_SIZE                         (16 * 1024)
+#define NX_AZURE_IOT_ADU_AGENT_HTTP_WINDOW_SIZE                         (10 * 1024)
 #endif /* NX_AZURE_IOT_ADU_AGENT_HTTP_WINDOW_SIZE  */
 
 /* Define the timeout of HTTP for connecting. The default time is 30s.  */
@@ -231,7 +232,7 @@ extern   "C" {
 
 /* Define the total timeout of HTTP for downloading the whole firmware. The default time is 300s.  */
 #ifndef NX_AZURE_IOT_ADU_AGENT_HTTP_DOWNLOAD_TIMEOUT
-#define NX_AZURE_IOT_ADU_AGENT_HTTP_DOWNLOAD_TIMEOUT                    (300)
+#define NX_AZURE_IOT_ADU_AGENT_HTTP_DOWNLOAD_TIMEOUT                    (3000)
 #endif /* NX_AZURE_IOT_ADU_AGENT_HTTP_DOWNLOAD_TIMEOUT */
 
 /* Define the http protocol string.  */
