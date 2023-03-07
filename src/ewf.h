@@ -30,6 +30,7 @@
 #ifdef EWF_DEBUG
 #include <stdio.h>
 #endif
+#define NULL	 	_NULL
 
 #include <stdint.h>
 #include <stdbool.h>

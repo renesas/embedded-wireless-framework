@@ -9,6 +9,7 @@
 #include "ewf_interface_rx_uart.h"
 #include "ewf_lib.h"
 
+//#define SCI06_ENABLE
 
 
 /******************************************************************************
@@ -27,6 +28,8 @@ void ewf_rx_uart_callback(void *pArgs);
 /* Handle storage. Needs to persist as long as SCI calls are going to be made.*/
 static sci_hdl_t   ewf_rx_sci_handle;
 
+static TX_MUTEX ewf_sci_mutex;
+
 
 /*****************************************************************************
  * Function Name: ewf_rx_uart_callback
@@ -41,9 +44,24 @@ void ewf_rx_uart_callback(void *pArgs)
 	sci_cb_args_t   *args;
 
 	args = (sci_cb_args_t *)pArgs;
+	//tx_mutex_put(&ewf_sci_mutex);
 
 	/* Logged the event in global variable */
 	g_uart_event = (uint8_t)args->event;
+
+	switch(g_uart_event)
+	{
+	    case SCI_EVT_XFER_DONE:
+	        LOG_TERMINAL("SCI_EVT_XFER_DONE\n");
+	        break;
+	    case SCI_EVT_XFER_ABORTED:
+	        LOG_TERMINAL("SCI_EVT_XFER_ABORTED\n");
+	        break;
+	    case SCI_EVT_OVFL_ERR:
+	        LOG_TERMINAL("SCI_EVT_OVFL_ERR\n");
+	        break;
+
+	}
 }
 
 
@@ -68,7 +86,11 @@ ewf_result ewf_interface_rx_uart_hardware_start(ewf_interface* interface_ptr)
 	uint8_t     priority = 14;
 #endif
 
-	R_SCI_PinSet_SCI0();
+#ifndef SCI06_ENABLE
+    R_SCI_PinSet_SCI0();
+#else
+    R_SCI_PinSet_SCI6();
+#endif
 
 	/* Set up the configuration data structure for asynchronous (UART) operation. */
     ewf_rx_sci_config.async.baud_rate    = implementation_ptr->baudrate;
@@ -83,7 +105,11 @@ ewf_result ewf_interface_rx_uart_hardware_start(ewf_interface* interface_ptr)
 	 *  Provide address of the config structure,
 	 *  the callback function to be assigned,
 	 *  and the location for the handle to be stored.*/
-	sci_err = R_SCI_Open(SCI_CH0, SCI_MODE_ASYNC, &ewf_rx_sci_config, ewf_rx_uart_callback, &ewf_rx_sci_handle);
+#ifndef SCI06_ENABLE
+    sci_err = R_SCI_Open(SCI_CH0, SCI_MODE_ASYNC, &ewf_rx_sci_config, ewf_rx_uart_callback, &ewf_rx_sci_handle);
+#else
+    sci_err = R_SCI_Open(SCI_CH6, SCI_MODE_ASYNC, &ewf_rx_sci_config, ewf_rx_uart_callback, &ewf_rx_sci_handle);
+#endif
 
 	/* If there were an error this would demonstrate error detection of API calls. */
 	if (SCI_SUCCESS != sci_err)
@@ -97,6 +123,8 @@ ewf_result ewf_interface_rx_uart_hardware_start(ewf_interface* interface_ptr)
 		R_SCI_Control(ewf_rx_sci_handle, SCI_CMD_SET_TXI_PRIORITY, &priority);
 #endif
 
+
+		tx_mutex_create(&ewf_sci_mutex, "EWF SCI mutex", TX_INHERIT);
 
 #ifdef EWF_RENESAS_RX65N_CK_ENABLE
 		PORT3.PODR.BIT.B4= 0;
@@ -121,7 +149,11 @@ ewf_result ewf_interface_rx_uart_hardware_stop(ewf_interface* interface_ptr)
 	ewf_platform_mutex_destroy(&implementation_ptr->mutex);
 #endif
 
-	R_SCI_Close(SCI_CH0);
+#ifndef SCI06_ENABLE
+    R_SCI_Close(SCI_CH0);
+#else
+    R_SCI_Close(SCI_CH6);
+#endif
 
 	return EWF_RESULT_OK;
 }
@@ -139,9 +171,17 @@ ewf_result ewf_interface_rx_uart_hardware_send(ewf_interface* interface_ptr, con
 	g_interface_ptr = interface_ptr;
 
 	sci_err_t err = SCI_SUCCESS;
-	uint32_t local_timeout = (length * UINT16_MAX);
+	uint32_t local_timeout = (length * UINT16_MAX);//UINT32_MAX;//;
 
-	err = R_SCI_Send(ewf_rx_sci_handle, (uint8_t*)buffer, length);
+	//tx_mutex_get(&ewf_sci_mutex,TX_WAIT_FOREVER);
+    while (SCI_SUCCESS != R_SCI_Send(ewf_rx_sci_handle, (uint8_t*) buffer, length))
+    {
+        if (0 == (local_timeout))
+        {
+            return EWF_RESULT_TIMEOUT;
+        }
+    }
+
 	if (SCI_SUCCESS != err)
 	{
 		return EWF_RESULT_ADAPTER_TRANSMIT_FAILED;
@@ -159,6 +199,7 @@ ewf_result ewf_interface_rx_uart_hardware_send(ewf_interface* interface_ptr, con
 
 	if (0 == local_timeout)
 	{
+	    demo_printf("EWF_RESULT_TIMEOUT\n");
 		return EWF_RESULT_TIMEOUT;
 	}
 
