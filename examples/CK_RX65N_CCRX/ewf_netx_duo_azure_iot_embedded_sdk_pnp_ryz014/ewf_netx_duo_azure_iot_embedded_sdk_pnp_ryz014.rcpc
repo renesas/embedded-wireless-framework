@@ -2519,7 +2519,7 @@
           <Option>-nologo</Option>
           <Option>-nomessage</Option>
           <Option>-end</Option>
-          <Option>-output="firmware_1.0.0.bin=fff60000-ffffffff"</Option>
+          <Option>-output="firmware_1.0.0.bin=fff00000-ffffffff"</Option>
           <Option>-form=binary</Option>
           <Option>-nologo</Option>
           <Option>-nomessage</Option>

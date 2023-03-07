@@ -1716,7 +1716,7 @@
 								<option id="com.renesas.cdt.managedbuild.renesas.ccrx.converter.option.separated.form.binaryFile.332710564" name="Binary file (-form=binary)" superClass="com.renesas.cdt.managedbuild.renesas.ccrx.converter.option.separated.form.binaryFile" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="com.renesas.cdt.managedbuild.renesas.ccrx.converter.option.outputHexFile.1541555138" name="Output hex file" superClass="com.renesas.cdt.managedbuild.renesas.ccrx.converter.option.outputHexFile" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.renesas.cdt.managedbuild.renesas.ccrx.converter.option.divisionOutputBinaryFile.1266659121" name="Division output bin file (for Bin) (-output=&lt;File name&gt;)" superClass="com.renesas.cdt.managedbuild.renesas.ccrx.converter.option.divisionOutputBinaryFile" useByScannerDiscovery="false" valueType="stringList">
-									<listOptionValue builtIn="false" value="firmware_1.0.0.bin=fff60000-ffffffff"/>
+									<listOptionValue builtIn="false" value="firmware_1.0.0.bin=fff00000-ffffffff"/>
 								</option>
 							</tool>
 							<tool id="com.renesas.cdt.managedbuild.renesas.ccrx.base.rtosConfig.1386589714" name="RTOS Configurator" superClass="com.renesas.cdt.managedbuild.renesas.ccrx.base.rtosConfig"/>
