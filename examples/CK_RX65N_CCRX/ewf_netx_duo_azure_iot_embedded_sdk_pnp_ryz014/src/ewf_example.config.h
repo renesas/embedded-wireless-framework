@@ -31,7 +31,7 @@ extern "C" {
 #define EWF_CONFIG_MESSAGE_ALLOCATOR_BLOCK_COUNT                    (16)
 
 /** @brief the size of each message allocator block */
-#define EWF_CONFIG_MESSAGE_ALLOCATOR_BLOCK_SIZE                     (1500)
+#define EWF_CONFIG_MESSAGE_ALLOCATOR_BLOCK_SIZE                     (5000)
 
 /** @} *** group_example_configuration_allocator */
 
@@ -45,7 +45,7 @@ extern "C" {
 #define EWF_CONFIG_SIM_PIN                                          ("0000")
 
 /** @brief The SIM operator APN */
-#define EWF_CONFIG_SIM_APN                                          ("globaldata.iot")
+#define EWF_CONFIG_SIM_APN                                          ("ppsim.jp")
 
 /** @brief The modem context ID used */
 #define EWF_CONFIG_CONTEXT_ID                                       (1)

@@ -27,7 +27,7 @@ extern "C" {
  ****************************************************************************/
 
  /** Define this symbol to enable compilation of debug code. When this symbol is not defined, debug code is not present and the footprint is reduced.  */
-#define EWF_DEBUG
+//#define EWF_DEBUG
 
 /** Define this symbol to enable verbose logging */
 //#define EWF_LOG_VERBOSE
@@ -46,6 +46,7 @@ extern "C" {
 
 #ifdef EWF_DEBUG
 #define EWF_LOG       demo_printf
+//#define EWF_LOG(...)
 #else
 #define EWF_LOG(...)
 #endif

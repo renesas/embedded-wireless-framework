@@ -344,17 +344,17 @@ void application_thread_entry(ULONG entry_input)
     nx_ip_gateway_address_get(&ip_0, &gateway_address);
 
     /* Output IP address and gateway address. */
-    printf("IP address: %lu.%lu.%lu.%lu\r\n",
+    LOG_TERMINAL("IP address: %lu.%lu.%lu.%lu\r\n",
            (ip_address >> 24),
            (ip_address >> 16 & 0xFF),
            (ip_address >> 8 & 0xFF),
            (ip_address & 0xFF));
-    printf("Mask: %lu.%lu.%lu.%lu\r\n",
+    LOG_TERMINAL("Mask: %lu.%lu.%lu.%lu\r\n",
            (network_mask >> 24),
            (network_mask >> 16 & 0xFF),
            (network_mask >> 8 & 0xFF),
            (network_mask & 0xFF));
-    printf("Gateway: %lu.%lu.%lu.%lu\r\n",
+    LOG_TERMINAL("Gateway: %lu.%lu.%lu.%lu\r\n",
            (gateway_address >> 24),
            (gateway_address >> 16 & 0xFF),
            (gateway_address >> 8 & 0xFF),
@@ -451,7 +451,7 @@ UINT    dns_server_address_size = 12;
     }
 
     /* Output DNS Server address.  */
-    printf("DNS Server address: %lu.%lu.%lu.%lu\r\n",
+    LOG_TERMINAL("DNS Server address: %lu.%lu.%lu.%lu\r\n",
            (dns_server_address[0] >> 24),
            (dns_server_address[0] >> 16 & 0xFF),
            (dns_server_address[0] >> 8 & 0xFF),
