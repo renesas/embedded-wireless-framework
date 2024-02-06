@@ -11,6 +11,8 @@
 #ifndef __ewf_middleware_netxduo__h__included__
 #define __ewf_middleware_netxduo__h__included__
 
+#include "ewf.h"
+
 /* EWF enabled to use with Azure RTOS NetX */
 #if (EWF_CONFIG_AZURE_RTOS_NETX == 1)
 
