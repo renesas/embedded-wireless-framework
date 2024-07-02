@@ -62,8 +62,8 @@ Cellular modems in the same family are likely to work with small changes:
 - Quectel BG96
 - Quectel BG95
 - Quectel BC95
-- Renesas RYZ014
-- Renesas RYZ024A
+- Renesas GM01Q
+- Renesas GM02S
 - SIMCom SIM7000
 - SIMCom SIM7600
 - SIMCom SIM900
