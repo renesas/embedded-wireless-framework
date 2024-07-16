@@ -68,7 +68,7 @@ ewf_result ewf_adapter_renesas_common_mqtt_basic_urc_callback(ewf_interface* int
                 {
                     adapter_renesas_common_ptr->mqtt_basic_conn = false;
                     adapter_renesas_common_ptr->mqtt_basic_conn_error = (uint8_t)err;
-                    EWF_LOG("[RYZ ADAPTER][MQTT CONN ERR] [CODE : -%ld]", err);
+                    EWF_LOG("[GM0 ADAPTER][MQTT CONN ERR] [CODE : -%ld]", err);
                     return EWF_RESULT_OK;
                 }
             }
@@ -86,7 +86,7 @@ ewf_result ewf_adapter_renesas_common_mqtt_basic_urc_callback(ewf_interface* int
                 uint32_t err = ewfl_str_to_unsigned(q1);
                 if(err != 0)
                 {
-                    EWF_LOG("[RYZ ADAPTER][MQTT PUBLISH ERR] [CODE : %ld]\r\n", err);
+                    EWF_LOG("[GM0 ADAPTER][MQTT PUBLISH ERR] [CODE : %ld]\r\n", err);
                     adapter_renesas_common_ptr->mqtt_basic_publish_error = (uint8_t)err;
                 }
                 adapter_renesas_common_ptr->mqtt_basic_publish = true;
@@ -106,7 +106,7 @@ ewf_result ewf_adapter_renesas_common_mqtt_basic_urc_callback(ewf_interface* int
                 uint32_t err = ewfl_str_to_unsigned(q1);
                 if(err != 0)
                 {
-                    EWF_LOG("[RYZ ADAPTER][MQTT SUBSCRIBE ERR] [CODE : %ld]\r\n", err);
+                    EWF_LOG("[GM0 ADAPTER][MQTT SUBSCRIBE ERR] [CODE : %ld]\r\n", err);
                     adapter_renesas_common_ptr->mqtt_basic_subscribe_error = (uint8_t)err;
                 }
                 adapter_renesas_common_ptr->mqtt_basic_subscribe = true;
@@ -131,7 +131,7 @@ ewf_result ewf_adapter_renesas_common_mqtt_basic_urc_callback(ewf_interface* int
                 {
                     adapter_renesas_common_ptr->mqtt_basic_conn = false;
                     adapter_renesas_common_ptr->mqtt_basic_conn_error = true;
-                    EWF_LOG("[RYZ ADAPTER][MQTT DISCONNECT ERR] [CODE : -%ld]", err);
+                    EWF_LOG("[GM0 ADAPTER][MQTT DISCONNECT ERR] [CODE : -%ld]", err);
                     return EWF_RESULT_OK;
                 }
             }

@@ -77,7 +77,7 @@ extern "C" {
 #define EWF_ADAPTER_RENESAS_COMMON_INTERNET_SOCKET_UDP                         (1)
 
 /** @brief The total number of supported MQTT sockets in the adapter.
- * Only one MQTT client is supported in Renesas RYZ adapters */
+ * Only one MQTT client is supported in GM0 adapters */
 #define EWF_ADAPTER_RENESAS_COMMON_MQTT_SOCKET_POOL_SIZE                       (1)
 
 /** @brief The MQTT socket invalid value */

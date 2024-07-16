@@ -96,7 +96,7 @@ ewf_result ewf_adapter_renesas_common_internet_start(ewf_adapter* adapter_ptr)
     for (i = 0; i < EWF_ADAPTER_RENESAS_COMMON_INTERNET_SOCKET_POOL_SIZE; ++i)
     {
         adapter_renesas_common_ptr->internet_socket_pool[i].socket_ptr = NULL;
-        adapter_renesas_common_ptr->internet_socket_pool[i].id = i+1; // connId starts from 1 for RYZ014
+        adapter_renesas_common_ptr->internet_socket_pool[i].id = i+1; // connId starts from 1 for GM01Q
         adapter_renesas_common_ptr->internet_socket_pool[i].local_port = 0;
         adapter_renesas_common_ptr->internet_socket_pool[i].type = ewf_adapter_renesas_common_socket_service_type_not_initialized;
         adapter_renesas_common_ptr->internet_socket_pool[i].used = false;
