@@ -141,7 +141,7 @@ extern "C" {
  * @} *** group_configuration_adapter_renesas_gm01q
  ****************************************************************************/
 
-/* Include the Quectel common header here, to take the above configuration macros into account */
+/* Include the Renesas common header here, to take the above configuration macros into account */
 #include "ewf_adapter_renesas_common.h"
 
 /************************************************************************//**
@@ -189,7 +189,7 @@ ewf_result ewf_adapter_renesas_gm01q_urc_callback(ewf_interface* interface_ptr, 
 
 /**
  * @defgroup group_adapter_renesas_gm01q_context Context activation, deactivation and configuration
- * @brief Quectel adapter driver context API
+ * @brief Renesas adapter driver context API
  * @{
  */
 
@@ -361,7 +361,7 @@ ewf_result ewf_adapter_renesas_gm01q_mqtt_urc_callback(ewf_interface* interface_
 /** @brief The Renesas GM01Q adapter data structure */
 typedef struct _ewf_adapter_renesas_gm01q
 {
-    /** The Quectel common data, it must be the first in the implementation structure */
+    /** The Renesas common data, it must be the first in the implementation structure */
     ewf_adapter_renesas_common common_implementation_data;
 
 } ewf_adapter_renesas_gm01q;
