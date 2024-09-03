@@ -7,11 +7,11 @@
  * brief The Embedded Wireless Framework Renesas common Internet(TCP+UDP) implementation
  ****************************************************************************/
 
+#include <ctype.h>
+
 #include "ewf_adapter_renesas_common.h"
 #include "ewf_platform.h"
 #include "ewf_lib.h"
-
-#include <ctype.h>
 
 /******************************************************************************
  *
