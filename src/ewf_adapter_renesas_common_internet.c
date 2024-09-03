@@ -11,6 +11,8 @@
 #include "ewf_platform.h"
 #include "ewf_lib.h"
 
+#include <ctype.h>
+
 /******************************************************************************
  *
  * API
